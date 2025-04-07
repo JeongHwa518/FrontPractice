@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>변수에 대해서 알아보자 - var vs let vs const</h1>
+    <script>
+    //변수 선언 --> var 변수이름 = 값 ; var 생략가능
+    
+    var a;
+    var b = 20;
+        c = "희정";
+        d = 3.14;
+
+    document.write("<h3>");
+        document.write("a = " + a +" , " + typeof(a) + "<br>");
+        document.write("b = " + b +" , " + typeof(b) + "<br>");
+        document.write("c = " + c +" , " + typeof(c) + "<br>");
+        document.write("d = " + d +" , " + typeof(d) + "<hr>");
+
+        //값 변경
+        a = new String("되니?");
+        b = new Array(1, "hi", 3.5, true);
+        c = false;
+        d = "수정함";
+        document.write("a = " + a +" , " + typeof(a) + "<br>");
+        document.write("b = " + b +" , " + typeof(b) + "<br>");
+        document.write("c = " + c +" , " + typeof(c) + "<br>");
+        document.write("d = " + d +" , " + typeof(d) + "<hr>");
+
+        /*
+            1. 동일한 이름의 변수를 또 선언한다면?
+            2. 변수 또는 함수를 선언전에 사용하려고 한다면?
+            -- 1,2 모두 성공을 한다.
+               자바스크립트에서는 호이스팅이라는 개념이 있기 때문이다.
+               호이스팅이란 변수, 함수는 미리 선언부 맨위로 끌어 올린다는 뜻
+               올릴때 초기화는 X
+            
+            3. 함수안에서 변수 선언할때 var 생략하면 전역변수가 된다.
+
+            4. 자바스크립트에서 선언되는 변수들은 함수블럭 단위이다.. 
+        */
+        var a = "중복가능?";
+        document.write("a = " + a +" , " + typeof(a) + "<br>");
+        document.write("addr = " + addr +" , " + typeof(addr) + "<br>");
+
+        var addr = "서울";
+
+        document.write("addr = " + addr +" , " + typeof(addr) + "<br>");
+
+        //함수를 호출해보자
+        //test();
+
+        //함수를 선언
+        function test(){
+            alert("1. test call...");
+        }
+
+        function test(){
+            alert("2. test call...");
+        }
+
+        function test2(){
+            var a = 100; //지역변수 이름과 전역변수 이름을 동일한경우..
+            var name2="희정"; //지역변수에 있는 유일한 변수
+            age = 20; //함수안에서 변수를 선언할때 var 생략한 경우 - 전역변수
+
+            console.log(a); //지역변수 a
+            console.log(this.a); //전역변수 a
+            console.log(name2);
+            console.log(age);
+        }
+
+        function test3() {
+            console.log("test3 call...-------");
+            console.log(a);
+            console.log(this.a); //전역변수 a
+            //console.log(name2);
+            console.log(age);
+            console.log("test3 end...-------");
+        }
+
+        //test2();
+        //test3();
+
+        ///////////////////////////////////////////////////
+        function test4() {
+            console.log("전 i= " + i);
+            for(var i=0; i <= 5; i++){
+                //기능
+            }
+            { var j = 100;}
+            console.log("후 i= " + i);
+            console.log("j= " + j);
+        }
+
+        test4();
+    document.write("</h3>");
+    </script>
+</body>
+</html>

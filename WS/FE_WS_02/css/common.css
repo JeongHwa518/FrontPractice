@@ -1,0 +1,20 @@
+* {
+    margin: 0 1px;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  #container {
+    width: 100%;
+  }
+
+  #banner {
+    text-align: center;
+    font-size: xx-large;
+    text-shadow: 5px 5px 5px gray;
+    background-color: rgb(128, 99, 255);
+    color: white;
+    padding: 25px;
+    border-top: 5px solid white;
+    border-bottom: 5px solid white;
+  }

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .main{
+            width: 500px; height: 400px;
+            background-color: pink;
+            position: relative;
+        }
+        div div{
+            width: 80px;height: 80px; text-align: center;align-content: center;
+        }
+        .a{
+            background-color: red;
+            position: relative;
+            left: 30px; top: 20px;
+            z-index: 1;
+        }
+        .b{
+            background-color: green;
+            left: 60px; top: 40px;
+            /*position:relative; /*원래 놓여야 할 위치에서 부터 이동*/
+            /*position: absolute; /*가장 가까운 부모중에 position이 static이 아닌 부모를 기준으로 이동*/
+            position: fixed; /*브라우저 화면을 기준으로 이동*/
+            /*position: sticky; /*relative와 fixed의  중간 성격을 가진 속성*/
+            z-index: 2;
+         }
+        .c{
+            background-color: blue;
+            position: relative;    
+            z-index: 3;
+        }
+        .todayView {
+            width: 300px; height: 300px;
+            border: inset 3px skyblue;
+            padding: 5px;
+            box-sizing: border-box;  /*패딩값을 줬을때 box사이즈가 바뀌는 것을 막아줌*/
+            position: fixed;
+            top: 10px; right: 20px;
+        }
+    </style>
+</head>
+<body>
+  <div class="main">
+    <div class="a">1</div>
+    <div class="b">2</div>
+    <div class="c">3</div>
+  </div>
+
+  <div class="todayView">
+    <h4>오늘본 상품</h4>
+  </div>
+</body>
+</html>

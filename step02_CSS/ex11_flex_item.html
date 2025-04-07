@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .main{
+            width: 100vw; height: 100vh;
+            background-color: aqua;
+            display: flex;
+        }
+        .item {
+            width: 100px; height: 60px;
+            border: 1px red solid;
+            box-sizing: border-box;
+        }
+
+        /*
+            아이템 사이즈를 결정하는 요소
+            flex-grow: ;
+            flex-shrink: ;
+            flex-basis: ;
+        */
+        .item1 {
+            
+            flex-shrink: 4;
+            flex-basis: 20%;
+        }
+        .item2 {
+            
+            flex-shrink: 1;
+            flex-basis: 20%;
+        }
+        .item3 {
+            
+            flex-shrink: 1;
+            flex-basis: 20%;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="main">
+        <div class="item item1">1</div>
+        <div class="item item2">2</div>
+        <div class="item item3">3</div>
+    </div>
+</body>
+</html>

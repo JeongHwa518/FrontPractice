@@ -1,0 +1,14 @@
+footer {
+    background-color: rgb(230, 255, 255);
+    border-top: 1px solid #ddd;
+    padding: 10px;
+    margin-top: 20px;
+}
+
+footer li {   
+    list-style: none;
+    text-align: right;
+    margin: 3px 0;
+    padding-right: 10px;
+    font-size: 14px;
+}

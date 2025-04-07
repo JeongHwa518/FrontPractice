@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!--외부의 js파일 연결-->
+    <script src="js/basic.js">
+        //console.log("src속성이 있는 script에서는 무시돼요!");
+        //alert("난 출력되니?"); //메시지 출력(팝업)
+    </script>
+    <script>
+        console.log("src속성이 있는 script에서는 무시돼요!");
+        alert("난 출력되니?"); //메시지 출력(팝업)
+    </script>
+</head>
+<body>
+    <!--
+        html 요소에 이벤트를 적용할때 - xxx는 이벤트 종류(click, mouseover, mouseout, keydown,...) 
+        onXxx="기능작성;기능;..."
+    -->
+    <h1 onmouseover="mouseOver(this)" onmouseout="mouseOut(this)">JavaScript 시작하기</h1>
+
+    <h1 onmouseover="mouseOver(this)" onmouseout="mouseOut(this)">마우스 올려봐</h1>
+
+    <script>
+        document.write("<h3 onmouseover='mouseOver(this)' onmouseout='mouseOut(this)'>안녕하세요.</h3>");
+    </script>
+
+</body>
+</html>
