@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculator</title>
+    <style>
+        #result{
+            border: 1px solid red;
+            width: 200px;
+            height: 150px;
+        }
+    </style>
+</head>
+<body>
+    <h1>계산해보자</h1>
+    <button type="button">계산</button>
+    <div id="result"></div>
+
+    <script>
+        function calculator() {
+            let divEle = document.getElementById("result");
+            divEle.innerHTML = ""
+            let num1 = parseInt(prompt("첫번째 숫자를 입력하세요"));
+            let num2 = parseInt(prompt("두번째 숫자를 입력하세요"));
+            let operator = prompt("연산기호를 입력하세요 (+, -, *, /)");
+
+            const operators = ['+','-','*','/'];
+
+            if(isNaN(num1) || isNaN(num2) || !operators.includes(operator)){
+                let retry = confirm("잘못된 값입니다. 다시 하겠습니까?");
+                if(retry) calculator();
+                return;
+            }
+
+            switch(operator){
+                case '+': divEle.innerHTML += `<h4>${num1} ${operator} ${num2} = ${num1 + num2}</h4>`; break;
+                case '-': divEle.innerHTML += `<h4>${num1} ${operator} ${num2} = ${num1 - num2}</h4>`; break;
+                case '*': divEle.innerHTML += `<h4>${num1} ${operator} ${num2} = ${num1 * num2}</h4>`; break;
+                case '/': 
+                    if (num1 === 0 || num2 === 0) {
+                        let retry = confirm("0으로 나눌 수 없습니다. 다시 하겠습니까?");
+                            if(retry) calculator();
+                        return;
+                    } 
+                    divEle.innerHTML += `<h4>${num1} ${operator} ${num2} = ${num1 / num2}</h4>`; break;
+            }
+        }
+        //버튼 클릭 시 함수 호출
+        document.querySelector("[type=button]").addEventListener("click", ()=>{
+            calculator();
+        })
+    </script>
+</body>
+</html>

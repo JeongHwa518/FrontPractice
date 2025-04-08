@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GuguDan</title>
+</head>
+<style>
+    #title {
+        text-align: center;
+    }
+
+    #gugudan {
+      border: 2px solid red;
+      border-collapse: collapse;
+      margin: 20px auto;
+    }
+
+    th, td {
+      border: 1px solid gray;
+      padding: 8px;
+      text-align: center;
+    }
+
+    th {
+      color: white;
+      background-color: pink;
+      font-weight: bold;
+    }
+</style>
+<script>
+    document.write("<h3 id='title'>구구단</h3>");
+    document.write("<table id='gugudan'></table>");
+
+    const table = document.getElementById("gugudan");
+
+    const header = document.createElement("tr");
+    for(let i = 2; i <= 9; i++){
+        const th = document.createElement("th");
+        th.textContent =`${i}단`;
+        header.appendChild(th);
+    }
+    table.appendChild(header);
+
+    for(let i = 1; i <= 9; i++){
+        const col = document.createElement("tr");
+        for(let j = 2; j <= 9; j++){
+            const row = document.createElement("td");
+            row.textContent = `${j} * ${i} = ${j * i}`;
+            col.appendChild(row);
+        }
+        table.appendChild(col);
+    }
+
+</script>
+<body>
+    
+</body>
+</html>
