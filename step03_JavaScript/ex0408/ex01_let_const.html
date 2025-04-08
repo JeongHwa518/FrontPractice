@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>변수에 대해 알아보자 - var vs let vs const</h1>
+    <script>
+    //변수 선언 --> var 변수이름 = 값 ; var 생략가능
+    let a;
+    let b = 20;
+        c = "희정"; //var 생략 된것이기 때문에 또 선언해도 되고 선언전에 사용가능한 기능 동작
+       
+
+    document.write("<h3>");
+        document.write("a = " + a +" , " + typeof(a) + "<br>");
+        document.write("b = " + b +" , " + typeof(b) + "<br>");
+        document.write("c = " + c +" , " + typeof(c) + "<br>");
+
+        //let a = 100; //Uncaught SyntaxError: Identifier 'a' has already been declared
+
+        //document.write("d = " + d +" , " + typeof(d) + "<br>");
+        let d = "되니?"; //Uncaught ReferenceError: Cannot access 'd' before initialization
+
+        function test4() { //선언적함수
+            //console.log("전 i= " + i);
+            for(let i=0; i <= 5; i++){ //let은 블럭레벨{} scope가 된다.
+                //기능
+            }
+            { let j = 100;}
+            //console.log("후 i= " + i);
+            //console.log("j= " + j);
+        }
+
+        test4();
+
+    /*
+        let의 선언한 변수를 또 선언할 수 있는지? - x
+        선언전에 사용할 수 있는지? - x
+            let 변수도 호이스팅이 되지만 값을 할당하기 전에는 사용불가하다.
+            TDZ(Temporal Dead Zone) 이라고 한다. - 변수의 선언과 변수의 초기화 사이의 변수에 접근할 수 없는 지점
+            즉, 초기화되지 않은 변수가 있는 곳을 TDZ 이라고 한다.
+
+        let 변수의 scope은 블럭 레벨 scope가 된다.
+
+        함수를 선언할때 선언적 함수가 아닌 함수표현식으로 작성하게되면
+        동일한 이름의 함수를 단 한개만 만들 수 있다.(중복 사용 불가)
+        함수표현식으로 작성한 함수는 선언전에 호출할 수 없다.
+
+        const는 상수로 반드시 선언과 동시에 값을 할당해야하고 한번 초기화 되고나면
+        값변경이 불가하다. - const는 주로 함수, 객체들을 const에 저장 한다.
+
+    */
+
+    const person = {name:"희정", age:20, addr:"서울"}; //const로 객체 선언시 person은 못바꿔도 안에 내용은 수정가능
+    person.name="정화"; //가능
+    //person = {} ; //불가 Uncaught TypeError: Assignment to constant variable.
+
+    //test();
+
+    //함수를 선언
+    /* function test(){
+        alert("1. test call...");
+    }
+
+    function test(){
+        alert("2. test call...");
+    } */
+
+    /////////////////////////////////////////
+    //위 함수 2개를 함수 표현식으로 작성해보자 - 권장
+    let test = function aa() {
+        alert("1. test call...");
+    }
+    
+    let test2 = function aa() {
+        alert("2. test call...");
+    }
+
+    //함수표현식 함수를 호출
+    test();
+    test2();
+
+
+    document.write("</h3>");
+    </script>
+</body>
+</html>

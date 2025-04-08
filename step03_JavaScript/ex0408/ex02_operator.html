@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>연산자 알아보자</h1>
+    <script>
+        //변수 선언
+        let i = 10;
+        let j = "10";
+
+        document.write("<h3>");
+            document.write("i = " + i + ", j = " + j + "<hr>");
+
+            //템플릿 문자열 - 백틱 ``
+            document.write(`i = ${i}, type = ${typeof i} <br>`);
+            document.write(`j = ${j}, type = ${typeof j} <hr>`);
+            
+            document.write(`${i} == ${j} = ${i==j} <br>`);
+            document.write(`${i} === ${j} = ${i===j} <hr>`); //값 + 타입 비교
+
+            document.write(`${i} != ${j} = ${i!=j} <br>`);
+            document.write(`${i} !== ${j} = ${i!==j} <hr>`);
+
+            /*
+             alert() / prompt() / confirm() window에 있는 창
+
+             //형변환
+               1) window.parseInt(); - 값안에 문자가 나오기전까지 숫자를 추출
+               2) Number() - 값안에 문자가 포함되어 있으면 NaN 결과
+
+               3) isNaN() : is Not a Number  - 형변환은 아님, 숫자가 아니면 true 숫자면 false
+            */
+
+            //let data = "100";
+            let data = "100a";
+            //let data = "a100";
+            document.write(`data = ${data}, type = ${typeof data} <br>`);
+
+            //형변환
+            document.write(`parseInt(data) = ${parseInt(data)}, type = ${typeof data} <br>`);
+            document.write(`Number(data) = ${Number(data)}, type = ${typeof data} <br>`);
+            document.write(`isNaN(data) = ${isNaN(data)}, type = ${typeof data} <hr>`);
+        
+            let a = 10, b = "3";
+            document.write(`a + b = ${a + b} <br>`); //연결 연산자가 우선순위
+            document.write(`a + b = ${a + parseInt(b)} <br>`);
+            
+            document.write(`a - b = ${a - b} <br>`);
+            document.write(`a * b = ${a * b} <br>`);
+
+            let result = prompt("나이는?", 20);
+            document.write(`result = ${result} , type = ${typeof result}  <br>`);
+
+            //사용자의 의사를 물어보는 창
+            result = confirm("삭제하실래요?"); //결과는 true or false인 boolean형
+            document.write(`result = ${result} , type = ${typeof result}  <br>`);
+
+        document.write("</h3>");   
+    </script>
+</body>
+</html>

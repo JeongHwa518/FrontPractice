@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body> 
+    <h1>callback함수 실습해보자</h1>
+    <script>
+    /*
+        함수를 선언하는 방법
+        1) 선언적 함수
+        function test(){}
+
+        2) 함수표현식 (익명함수)
+        let test = function() {}
+
+        3) 화살표함수 (arrow함수)
+        4) 콜백함수 (callback함수)
+            : 매개변수로 함수를 전달하는 것
+    */
+
+    //덧셈기능 함수
+    let add = (a,b)=>{return a+b;}
+    
+    //뺄셈기능 함수
+    let minus = (a,b) => a-b;
+
+    //출력 담당하는 함수 작성
+    /*let print = (a,b,operator)=>{
+        let result;
+        if(operator==="+"){
+            result = add(a,b);
+        }else if(operator==="-"){
+            result = minus(a,b);
+        }
+        console.log(`${a} ${operator} ${b} = ${result}`);
+    };
+
+    //함수호출
+    print(5,10,"+");
+    print(5,3,"-");
+    */
+
+    /////////////////////////////////////////////////////////
+    let print = (a,b,operator)=>{ //콜백함수를 사용해보자
+        let result = operator(a,b); //함수호출
+        
+        console.log(`${a}, ${b} = ${result}`);
+    };
+
+    //함수호출
+    print(5,10,add);
+    print(5,3,minus);
+    print(10,2, function(a,b){return a*b;});
+    print(10,2, (a,b)=>a/b); //화살표함수
+
+    </script>
+    
+</body>
+</html>

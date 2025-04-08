@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>함수를 작성해보자</h1>
+    <script>
+    /*
+    함수를 선언하는 방법
+        1) 선언적 함수
+        function test(){}
+
+        2) 함수표현식 (익명함수)
+        let test = function() {}
+
+        3) 화살표함수 (arrow함수)
+        4) 콜백함수 (callback함수)
+    */
+
+    /*
+        3) arrow 함수 작성법
+           () => {기능}
+           (a,b)=>{기능}
+           ()=>기능 - 기능이 한문장인경우 {}를 생략한다.
+           ()=>기능 - 함수가 return이 있는 함수이면서 문장이 한문장일 경우 
+                      {}를를 생략하고 문장만 작성하면 그 문장이 return이 된다.
+    */
+
+    let test01 = ()=>{
+        console.log("test01 호출됨");
+    }
+
+    let test02 = ()=> console.log("test01 호출됨");
+
+    let test03 = (a, b)=> {
+        console.log(`a = ${a}, b = ${b}`);
+        let convertA = parseInt(a);
+        let convertB = parseInt(b);
+        
+        console.log(`convertA = ${convertA} , convertB = ${convertB}`);
+
+        if(convertA && convertB){
+            return convertA+convertB;
+        }else {
+            return "숫자가 아니므로 연산할 수 없어요!";
+        }
+    }
+
+    //let test04 = (a, b)=> a*b; //값만 넣었기 때문에 return으로 인식한 것
+    let test04 = (a,b)=> {return a*b} //{}없이 한문장일때 return 사용 불가가
+    ////함수 호출해보자///////////////////
+    test01();
+    test01(10,"나영"); //함수 이름만 같으면 매개변수에 뭘 넣던 호출됨
+    
+    test02();
+    test02("안녕");
+    
+    //test03();
+    //let re = test03(5, 10);
+    /*let re = test03("안녕 ",5);
+    console.log(`re = ${re}`);*/
+
+    /*let result = test04(5, 3);
+    console.log(`result = ${result}`);*/
+
+    let re = test04(5,10);
+    re && console.log(`re = ${re}`); // re가 true일때만 실행
+
+    </script>
+</body>
+</html>

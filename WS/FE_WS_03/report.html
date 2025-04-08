@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Report</title>
+    <style>
+        h2 {
+            text-align: center;
+        }
+
+        div {
+            display: flex;
+            justify-content: center;
+        }
+        .report{
+            width: 600px;
+            border: 2px solid red;
+            border-collapse: collapse;
+        }
+        .report th, .report td{
+            border: 1px solid black;
+            text-align: center;
+            padding: 13px 20px;
+        }
+    </style>
+    <script>
+        document.write("<h2>성적표</h2>");
+        document.write("<div>");
+            document.write("<table class='report'>");
+                document.write("<tr>");
+                    document.write("<th>이름</th>");
+                    document.write("<th>국어</th>");
+                    document.write("<th>영어</th>");
+                    document.write("<th>수학</th>");
+                    document.write("<th>총점</th>");
+                    document.write("<th>평균</th>");
+                    document.write("<th>등급</th>");
+                document.write("</tr>");
+                document.write("<tr>");
+                    for(let i = 0; i < 7; i++){
+                        document.write("<td class='input'></td>");
+                    }
+                document.write("</tr>");
+            document.write("</table>");
+        document.write("</div>");
+
+
+        let input = document.getElementsByClassName("input");
+        
+        let name = prompt("이름을 입력하세요.");
+        let kor = prompt("국어점수를 입력하세요.");
+        let en = prompt("영어점수를 입력하세요.");
+        let math = prompt("수학점수를 입력하세요.");
+
+        let total = parseInt(kor) + parseInt(en) + parseInt(math);
+        let avg = Math.round((parseInt(total)/3.0) * 100) / 100.0; //소수점 둘째자리까지 출력
+        let grade;
+        switch(Math.floor(avg / 10)){
+            case 10, 9: grade = '수'; break;
+            case 8, 7: grade = '우'; break;
+            case 6, 5: grade = '미'; break;
+            case 4: grade = '양'; break;
+            default: grade = '가'; break; 
+        }
+
+        input[0].innerHTML = name;
+        input[1].innerHTML = kor;
+        input[2].innerHTML = en;
+        input[3].innerHTML = math;
+        input[4].innerHTML = total;
+        input[5].innerHTML = avg;
+        input[6].innerHTML = grade;
+
+    </script>
+</head>
+<body>
+
+</body>
+</html>

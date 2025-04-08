@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>자바스크립트에서 false 개념</h1>
+    <script>
+    /*
+        자바스크립트에는 7개의 false 존재
+        0 , -0, undefined, false, NaN, "", null은 모두 조건문에서 false로 처리가 됨
+    */
+
+    //함수작성
+    let test = function(name) {
+        //console.log(`${name}님 반가워요^^`);
+        /*if(name === "" || name === 0){
+            console.log(`잘못된 이름입니다.`);
+        }else {
+            console.log(`${name}님 반가워요^^`);
+        }*/
+
+        //name ? console.log(`${name}님 반가워요^^`) : console.log(`잘못된 이름입니다.`);
+
+        //name이 true일때만 실행하도록 함함
+        name && console.log(`${name}님 반가워요^^`);
+    }
+
+    //함수를 호출
+    let inputName = null;
+    test(inputName);
+
+    </script>
+</body>
+</html>
