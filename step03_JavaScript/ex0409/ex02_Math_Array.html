@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Math객체 and Array</h1>
+<script>
+//난수 발생
+let nansu = Math.random(); //0.0 ~ 0.9999 사이 임의의 수수
+console.log(nansu);
+
+//1 ~ 10 
+// (nansu * 경우의 수) + 초기값
+let convertNo = (nansu*10) + 1;
+console.log(convertNo);
+//소수점 버리기
+console.log(parseInt(convertNo));
+
+console.log("--------Array---------");
+
+//배열 선언
+const arr1 = [];
+const arr2 = new Array(1, true, "쉬고싶다");
+const arr3 = [2,4,6,8, true]; //좀더 권장하는 선언 방식
+
+//2차원 배열 선언
+const arr4 = [
+    [1,3,5], [2,4,7,9,true], ["A","B","C","D"]
+]
+
+//출력
+console.log(arr1);
+console.log(arr2.toString()); // Java와 같이 .toString() 이 생략된 것
+console.log(arr3);
+console.log(arr4);
+
+document.write(arr2 +"<br>");
+document.write(arr2.toString());
+
+//반복문
+for(let i = 0; i < arr2.length; i++){
+    console.log(i+"= " + arr2[i]);
+}
+
+//forEach함수 (더 권장)
+arr2.forEach((item, index)=>{ //item은 배열의 값, index는 배열의 번지수수
+    console.log(item + " = " + index);
+})
+
+
+</script>
+</body>
+</html>

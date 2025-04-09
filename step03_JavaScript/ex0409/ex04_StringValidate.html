@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+ <body>
+ <form name="form">
+   ID : <input type="text" name="id"><span id="idSpan"></span><p>
+   age : <input type="text" name="age" ><span></span><p>
+   email : <input type="text" name="email"><span></span><p>
+
+   <fieldset>
+     <legend>주민번호 </legend>
+	 <input type="text" size="6" name="jumin1"  > - <input type="text" size="7" name="jumin2"  ><span></span> <p>
+     
+	 성별 : 
+	 <input type="radio" name="gender" value="남자" >남자
+     <input type="radio" name="gender" value="여자">여자
+
+   </fieldset>
+
+
+ </form>
+
+ <script>
+  //이벤트 등록
+  document.querySelector('[name=id]').addEventListener("focus",()=>{
+    event.target.style.border="double 3px red";
+    //if(!event.target.value)
+    document.getElementById("idSpan").innerHTML=""; //값이 없다면 span칸 비우기
+  });
+
+  document.querySelector('[name=id]').addEventListener("blur",()=>{
+    event.target.style.border="double 3px blue";
+
+    //id는 영문만 가능
+    let idValue = event.target.value;
+    /*for(let i = 0; i < idValue.length; i++){
+      let ch = idValue.charAt(i);
+      //console.log(ch);
+      if(ch < 'a' || ch > 'z'){ //영문이 아닐 경우
+        console.log("영문아니다");
+      }
+    } */
+   //id는 영문 + 숫자 + $ @ ! 허용
+   let data ="qwertyuiopasdfghjklzxcvbnm1234567890$@!";
+   for(let i = 0; i < idValue.length; i++){
+      let ch = idValue.charAt(i);
+      if(data.toLocaleUpperCase().indexOf(ch.toLocaleUpperCase())==-1) { //data에서 못찾았을 경우 -1리턴턴
+        document.getElementById("idSpan").innerHTML = `<strong style='color:red'>영문, 숫자, $ @ !만 가능합니다.</strong>`;
+        return; //함수 빠져나가기
+      } 
+    } 
+    
+    //입력값 정상
+    
+
+  }); //blur 이벤트끝
+
+  //////////////////////////////////////////////////////
+  document.querySelector("[name=age]").addEventListener("blur",function() {
+    //숫자유무 체크
+    numberCheck(event.target);
+  });
+
+  //숫자유무 체크하는 함수 (숫자가 아니면 false, 숫자면 true 리턴)
+  let numberCheck = ( objEle )=>{
+    //console.log(objEle);
+
+    if(isNaN(objEle.value)){ // 숫자가 아니니?
+        //옆에 있는 span태그에 메시지 출력
+        /*
+          previousSibling Property
+          nextSibling Property
+          The firstChild Property
+          The lastChild Property
+          The childNodes Property
+          The hasChildNodes() Property
+        */
+       objEle.nextSibling.innerHTML = `<strong style='color:red'>숫자만 입력하세요.</strong>`;
+       objEle.value="";
+       objEle.focus();
+       return false;
+    }else{
+      objEle.nextSibling.innerHTML = "";
+    }
+    return true;
+  } //숫자유무 체크 함수 끝
+
+  //이메일은 @여부로 체크 (indexOf)
+
+  //주민번호 6자리가 되면 옆으로 넘어감
+  document.querySelector("[name=jumin1]").addEventListener("keyup",function(){
+    let juminEle = event.target;
+    if(isNaN( juminEle.value )){
+      //숫자 아닌경우 -> 끝자리를 지운다.
+      juminEle.value = juminEle.value.substr(0,juminEle.value.length-1);
+      return;
+    }
+
+    //6자리를 체크해서 커서를 이동시킨다.
+    if(juminEle.value.length === 6){
+      document.querySelector("[name=jumin2]").focus();
+      
+    }
+  }); //jumin1 끝
+////////////////////////////////////////////
+document.querySelector("[name=jumin2]").addEventListener("blur",function(){
+  //숫자유무 체크
+  let result = numberCheck(event.target)
+  
+  //성별체크 한다.
+  if(result){
+    let genderList = document.querySelectorAll("[name=gender]");
+    console.log(genderList);
+
+    let ch = event.target.value.charAt(0);
+    if(ch==="1" || ch ==="3"){
+      genderList[0].checked=true;
+    } else {
+      genderList[1].checked=true;
+    }
+  }
+});
+
+ </script>
+  
+ </body>
+</html>
