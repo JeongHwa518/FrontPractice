@@ -14,15 +14,18 @@
 </head>
 <body>
     <h1>계산해보자</h1>
-    <button type="button">계산</button>
+    <button id="button">계산</button>
     <div id="result"></div>
 
     <script>
-        function calculator() {
+        let calculator = ()=> {
             let divEle = document.getElementById("result");
-            divEle.innerHTML = ""
-            let num1 = parseInt(prompt("첫번째 숫자를 입력하세요"));
-            let num2 = parseInt(prompt("두번째 숫자를 입력하세요"));
+            divEle.innerHTML = "" //div 초기화
+            //let num1 = parseInt(prompt("첫번째 숫자를 입력하세요")); //parseInt 사용하면 10a 입력해도 10으로 인식하므로 잘못입력해도 계산이 됨됨
+            //let num2 = parseInt(prompt("두번째 숫자를 입력하세요"));
+
+            let num1 = Number(prompt("첫번째 숫자를 입력하세요")); // a10 --> NaN
+            let num2 = Number(prompt("두번째 숫자를 입력하세요"));
             let operator = prompt("연산기호를 입력하세요 (+, -, *, /)");
 
             const operators = ['+','-','*','/'];
@@ -34,22 +37,20 @@
             }
 
             switch(operator){
-                case '+': divEle.innerHTML += `<h4>${num1} ${operator} ${num2} = ${num1 + num2}</h4>`; break;
-                case '-': divEle.innerHTML += `<h4>${num1} ${operator} ${num2} = ${num1 - num2}</h4>`; break;
-                case '*': divEle.innerHTML += `<h4>${num1} ${operator} ${num2} = ${num1 * num2}</h4>`; break;
+                case '+': divEle.innerHTML = `<h4>${num1} ${operator} ${num2} = ${num1 + num2}</h4>`; break;
+                case '-': divEle.innerHTML = `<h4>${num1} ${operator} ${num2} = ${num1 - num2}</h4>`; break;
+                case '*': divEle.innerHTML = `<h4>${num1} ${operator} ${num2} = ${num1 * num2}</h4>`; break;
                 case '/': 
                     if (num1 === 0 || num2 === 0) {
                         let retry = confirm("0으로 나눌 수 없습니다. 다시 하겠습니까?");
                             if(retry) calculator();
                         return;
                     } 
-                    divEle.innerHTML += `<h4>${num1} ${operator} ${num2} = ${num1 / num2}</h4>`; break;
+                    divEle.innerHTML = `<h4>${num1} ${operator} ${num2} = ${num1 / num2}</h4>`; break;
             }
         }
         //버튼 클릭 시 함수 호출
-        document.querySelector("[type=button]").addEventListener("click", ()=>{
-            calculator();
-        })
+        document.getElementById("button").addEventListener("click", calculator);
     </script>
 </body>
 </html>

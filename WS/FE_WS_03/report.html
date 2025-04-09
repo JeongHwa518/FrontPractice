@@ -54,7 +54,7 @@
         let math = parseInt(prompt("수학점수를 입력하세요."));
 
         let total = kor + en + math;
-        let avg = Math.round((total/3.0) * 100) / 100.0; //소수점 둘째자리까지 출력
+        let avg = Math.round((total/3) * 100) / 100; //소수점 둘째자리까지 출력 (사후에 타입이 결정되므로 3.0/ 100.0 으로 할필요가 X)
         let grade;
         switch(Math.floor(avg / 10)){
             case 10, 9: grade = '수'; break;
