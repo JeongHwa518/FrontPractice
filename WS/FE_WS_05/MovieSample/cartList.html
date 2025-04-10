@@ -12,41 +12,94 @@
 }
 
 a{text-decoration: none}
+
+.totalprice p {
+	font-weight: bold;
+	margin: 0; 
+	padding: 8px 0;
+}
 </style>
 
 
-
 <script type="text/javascript">
-  
+  document.addEventListener('DOMContentLoaded', ()=>{
+	const table = document.getElementById("content");
+
+	let len = localStorage.length; //localStorage 저장된 값 갯수
+	let totalPrice = 0; //총 주문금액
+
+	//localStorage 값 가져오기
+	for(let i = 0; i < len; i++){
+		let key = localStorage.key(i);
+		let value = localStorage.getItem(key).split(',');
+		//localStorage 값 할당
+		let name = value[0];
+		let img = value[1];
+		let price = value[2];
+		totalPrice += parseInt(price);
+
+		//table 행 생성
+		const tr = document.createElement("tr");
+
+		//삭제버튼 생성
+		const delBtn = document.createElement('button');
+		delBtn.textContent = '삭제';
+
+		//테이블에 넣을 localStorage 값 배열 생성
+		const cartList = [`<img src="${img}" class="poster">`, name, key, `${price}`, delBtn];
+		
+		cartList.forEach((data)=> {
+			const td = document.createElement("td");
+			if(typeof data === 'string') td.innerHTML = data;
+			else td.appendChild(data); //삭제버튼일경우 노드로 추가
+
+			tr.appendChild(td);
+		});
+		
+		table.appendChild(tr);
+
+		//삭제 버튼 이벤트 추가
+		delBtn.addEventListener('click', ()=>{
+		localStorage.removeItem(key);
+		location.reload();
+		});
+	}
+
+	//총 주문금액 추가
+	//document.getElementById("price").innerHTML = `총 주문금액: ${totalPrice}원`;
+	const priceSection = document.getElementById("price");
+	const priceDiv = document.createElement("p");
+	priceDiv.textContent = `총 주문금액: ${totalPrice}원`;
+	priceSection.appendChild(priceDiv);
+
+  });
 </script>
 </head>
 <body>
-<button name="delItem">삭제</button>
-<hr>
-		<article class="main">
-		<section>
-			<table width="80%"  align="center"  >
-			<caption class="caption">찜 리스트</caption>
-			<thead>
-				<tr><th>이미지</th><th>상품번호</th><th>상품이름</th><th>가격</th><th>삭제</th></tr>
-			</thead>
-			<tbody id="content">
-			   <!-- 찜목록 출력 -->
-			    
-			</tbody>
-			</table>
-		</section>
-		<section  class="toalprice" id="price">
-			<!-- 가격 -->
-		</section>
-		<section class="link">
-			<table   align="center">
-			<tr><td align="center">
-				<a href="">주문하러 가기</a> 
-				<a href="index.html">DVD LIST</a> 
-			</td></tr>
-			</table>
-		</section>
-		</article>
+	<article class="main">
+	<section>
+		<table width="80%"  text-align="center" class="table" >
+		<caption class="caption">찜 리스트</caption>
+		<thead>
+			<tr><th>이미지</th><th>상품번호</th><th>상품이름</th><th>가격</th><th>삭제</th></tr>
+		</thead>
+		<tbody id="content">
+			<!-- 찜목록 출력 -->
+			
+		</tbody>
+		</table>
+	</section>
+	<section class="totalprice" id="price">
+		<!-- 가격 -->
+	</section>
+	<section class="link">
+		<table   text-align="center">
+		<tr><td text-align="center">
+			<a href="">주문하러 가기</a> 
+			<a href="index.html">DVD LIST</a> 
+		</td></tr>
+		</table>
+	</section>
+	</article>
 </body>
 </html>
