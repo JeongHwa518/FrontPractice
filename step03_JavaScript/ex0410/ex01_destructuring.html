@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- 배열이나 객체의 값을 쉽게 꺼내어 변수에 할당 할 수 있도록 하는 문법-->
+    <h1>구조분해 할당 - destructuring</h1>
+    
+    <script>
+        // 1. 객체    
+        const emp = {empno:100, ename:"hee", job:"teacher"};
+        {
+        //emp에 있는 속성의 값을 변수에 담고싶다.
+        let empno = emp.empno;
+        let ename = emp.ename;
+        let job = emp.job;
+
+        console.log(empno, ename, job);
+        }
+        {
+        //새로운 문법 - 구조분해 할당
+        let {empno, ename, job} = emp;
+        console.log(empno, ename, job);
+        }
+        {
+        //동일한 키만 있다면 순서 상관 X
+        let {ename, empno} = emp; //객체는 key로 바인딩딩
+        console.log(ename, empno);
+        }
+        {
+        let {empno, ename, job="programmer", sal=100} = emp;
+        console.log(empno, ename, job, sal);
+        }
+        { //key와 변수이름이 다를때
+        let {empno, ename:name} = emp; 
+        console.log(empno, name);
+        }
+        {
+        //배열 구조분해 할당
+        const jobs =["학생","강사"];
+        let first = jobs[0];
+        let second = jobs[1];
+        console.log(first, second);
+        }
+        {
+            let [first, second] = jobs; //배열은 index 순서대로 들어감
+            console.log(first, second);
+        }
+
+        const numbers = [10,20,30,40,50,60,70];
+        {
+            let[a,b,c] = numbers;
+            console.log(a,b,c);
+        }
+        {
+            let[a,b,,,c] = numbers; //배열 값 점프
+            console.log(a,b,c);
+        }
+        {
+            let[a,b,...c] = numbers; //rest연산자, 한번만 쓸수 있고 마지막 매개변수에만 사용가능 (...)
+            console.log(a,b,c); //(a,b와 ...부터끝까지를 한번에 배열로 출력)
+        }
+
+        {
+            let a=5,b=10;
+            //a와 b의 값을 교환하고 싶다
+            let temp = a;
+            a = b;
+            b = temp;    
+        }
+        {
+            let a=15,b=20;
+            //a와 b의 값을 교환하고 싶다
+            console.log(a,b);
+
+            //치환 필요없이 자리 맞교환 가능
+            [b,a] = [a,b];
+            console.log(a,b);
+        }
+
+        //단축 속성명
+        {
+            let name="희정", age=20;
+
+            let person = {
+                name : name,
+                age : age
+            }
+            console.log(person);
+        }
+
+        //단축 속성명(키-값이 같으면 키를 생략함)
+        {
+            let name="희정", age=20;
+
+            let person = {
+                name,
+                age
+            }
+            console.log(person);
+        }
+
+    </script>
+
+</body>
+</html>

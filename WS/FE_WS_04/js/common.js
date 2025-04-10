@@ -5,4 +5,7 @@ let listIdx = 0;
 setInterval(()=> {
     document.getElementById("banner").innerHTML = bannerList[listIdx];
     listIdx = (listIdx + 1) % bannerList.length;
+    
+    //document.getElementById("banner").innerHTML = bannerList[listIdx++];
+    //if(listIdx==bannerList.length) listIdx =0;
 } , 5000);

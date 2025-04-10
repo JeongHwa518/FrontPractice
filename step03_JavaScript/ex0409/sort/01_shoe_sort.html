@@ -636,6 +636,7 @@
     // 정렬 기능 - 이름으로 
     document.getElementById("sortName").addEventListener("click",()=>{
         let sortNameList = shoeData.toSorted((shoe1, shoe2)=>shoe1.title.localeCompare(shoe2.title));
+        const sorted = [...shoeData].sort((a,b)=> a.title.localeCompare(b.title)); // 전개구문으로 배열을 얕은 복사
         displayShoes(sortNameList);
     });
 

@@ -122,6 +122,24 @@
       let pwd = document.getElementById("password");
       let pwdCheck = document.getElementById("password2");
 
+      function validateCheck(obj) {
+        if(obj.value === ""){
+          alert("이름을 입력해주세요!");
+          obj.focus();
+          return true; //유효성 체크 실패
+        } else {
+          return false; //유효성 체크 성공
+        }
+      }
+
+      document.querySelectorAll("input").forEach(function(item, idx){
+        if(state){
+          if (validateCheck(item)) {  //유효성체크에서 실패
+            state=false; //return으로는 소용이 없으므로 상태변수에 false 담음 (return으로는 콜백함수만 빠져나가게됨)
+          }
+        }
+      })
+
       //이름의 값 유무 체크
       if(name.value === "") {
         alert("이름을 입력해주세요!");
