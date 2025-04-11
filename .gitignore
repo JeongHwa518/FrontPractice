@@ -1,8 +1,11 @@
 /Microsoft VS Code
 .gitignore
 
-.gif
-.png
-.jpg
-.pdf
-.json
+*.gif
+*.png
+*.jpg
+*.pdf
+*.json
+*.img
+*.mp4
+*.ogv
