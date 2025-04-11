@@ -8,6 +8,10 @@
 	margin: 0 auto; 
 	
 	}
+
+.table{
+	margin: 0 auto;
+}
 .link{position: relative;  top: 10px; width: 70%; margin: 0 auto; }
 .caption{  background-color:#222;
 		   vertical-align: middle;   
@@ -16,7 +20,7 @@
 		   font-size: 20px;
 		   color: #fff;
 		   }
-.toalprice{  
+.totalprice{  
 	       background-color:orange;  
 	       height:35px;  
 	       vertical-align: middle;   

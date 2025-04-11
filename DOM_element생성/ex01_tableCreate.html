@@ -29,15 +29,26 @@
 	       
 	
 		 /////동적으로 만들어진 element(삭제버튼)에 이벤트 등록////////////////////////////////////////
-		/* document.querySelector("[value=삭제]").addEventListener("click", function(){
+		/*document.querySelector("[value=삭제]").addEventListener("click", function(){
                console.log("되니???");
          });*/
+		 /*document.querySelectorAll("[value = 삭제]").forEach((item)=> { //화면렌더링할때 찾아서 부여하므로, 이후에 생성된 요소들엔 이벤트 등록이안됨
+			item.addEventListener("click", ()=> {
+				console.log("되니??");
+			});
+		});*/
 
 
 		 ///////동적으로 생성된 element 삭제에 이벤트 등록하기  //////////////////////////////////////  
-	 document.body.addEventListener('click', function(event) {
-        if (event.target.matches('[value=삭제]')) {
-            let tr = event.target.parentNode.parentNode; //button->td->tr  
+	 	document.body.addEventListener('click', function(event) {
+        if (event.target.matches('[value=삭제]')) { //matches를 추가하여 이후에 생성된 요소에도 이벤트 등록가능 
+            let key = event.target.getAttribute("id");
+			if(confirm("정말 삭제하실건가요?")){
+				localStorage.removeItem(key);
+				refreshPage();
+			}
+			
+			let tr = event.target.parentNode.parentNode; //button->td->tr  
            //tr삭제
             tr.parentNode.removeChild(tr) ; // 부모노드.removeChild(자식)
         }
