@@ -13,47 +13,44 @@ onload = ()=> {
 
     //현재 날짜 출력
     let today = new Date();
-    let year = today.getFullYear();
-    let month = (today.getMonth()+1);
-    let date = today.getDate();
-    let day = today.getDay();
+    document.querySelector(".header > h1").innerHTML = 
+    `${today.getFullYear()}년 ${(today.getMonth()+1)}월 ${today.getDate()}일 ${days[today.getDay()]}요일`;
 
-   document.querySelector("h1").innerHTML = `${year}년 ${month}월 ${date}일 ${days[day]}요일`;
-
-
-}
+}; //onload 끝
 
 const initData = (printData)=> {
-    printData.forEach((data)=> {
-        document.querySelector(".todo-item").innerHTML = data;
+    const todoWrapper = document.querySelector(".todos-wrapper");
+    todoWrapper.innerHTML = "";
 
-        const todoWrapper = document.querySelector("[class = todos-wrapper]");
+    printData.forEach((data)=> {
         todoWrapper.innerHTML += `<div class="todo-item"> 
-                              <input type="checkbox"> <div class="content"></div>
-                              <div class="date"></div>
-                              <button onclick="">삭제</button></div>`;
+                              <input type="checkbox" onchange="onUpdate(${data.id})" ${data.isDone ? "checked" : ""}/> 
+                              <div class="content">${data.content}</div>
+                              <div class="date">${new Date(data.date).toLocaleString()}</div>
+                              <button onclick="todoDel(this)">삭제</button></div>`;
         
-        //체크박스
-        let checkBox = document.querySelector("[type = checkbox]");
-        checkBox.onchange = () => {
-            if(data.isDone) checkBox.setAttribute("checked", "true");
-        }
-        
-        //삭제 버튼
-        document.querySelector("button").setAttribute("name", `${data.id}`);
-        document.querySelector("button").setAttribute("onclick", `todoDel${this}`);
-    })
+        //삭제 버튼에 name속성 추가
+        document.querySelector(".todo-item > button").setAttribute("name", `${data.id}`);
     
-}
+    });  
+};
 
 //추가 기능
 let idIndex = 3; //id의 값을 증가 시킬 변수(초기데이터가 2까지 있으므로 3부터 시작)
 document.querySelector(".editor > button").onclick =(e) =>{ 
     e.preventDefault(); //전송기능 막음 
-    let record = document.querySelector(".editor > input").value;
-    let newData = {id: idInex++, isDone:false, content: record, date: newDate().getTime()};
+
+    let content = document.querySelector(".editor > input").value;
+
+    if (content === "") {
+        alert("내용을 입력해주세요.");
+        return;
+    }
+
+    let newData = {id: idIndex++, isDone:false, content: content, date: new Date().getTime()};
 
     mockData.push(newData);
+    content = "";
     initData(mockData); //호출한다.(다시 화면 랜더링) 
 }  
 
@@ -62,37 +59,45 @@ const onUpdate = (targetId)=>{ //TodoItem에서 호출할 때 전달한 id
     /* mockData의 state의 값들 중에 targetId와 일치하는 todoitem의 isDone 변경 
         map함수를 이용한다. map함수의 결과를 mockData에 저장한다. 
     */ 
-    
- 
+    mockData = mockData.map((todo) => {
+        if(todo.id === targetId) return { ...todo, isDone: !todo.isDone};
+        return todo;
+    });  
     initData(mockData); //호출한다.(다시 화면 랜더링) 
 }
 
+
 //삭제 기능
 const todoDel = (th)=>{ 
+    if(confirm("정말 삭제하시겠습니까?")){
+    let btnId = Number(th.getAttribute("name"));
     //filter()함수를 이용해서 삭제하려는 대상이외의 todo만 추출해서 mockData에 담든다.
-
+    mockData = mockData.filter(todo => todo.id !== btnId);
 
     initData(mockData); //호출한다.(다시 화면 랜더링)
+    };
 }
 
 //검색 기능
 document.querySelector("#keyword").onkeyup = (e)=>{ 
- 
+
     let searchedTodos = getFilterData(e.target.value); 
-     
+
     initData(searchedTodos); 
-    
- } 
- 
- 
- const getFilterData = (search) =>{ 
-      //검색어가 없으면 mockData를 리턴한다. 
-       if(search===""){ 
-         return  mockData; 
-      } 
 
-      //filter함수를 이용해서 search(검색어)를 포함하고 있는 todo들를 받는다 
-      
-//filter의 결과를 리턴 한다. 
- }
+} 
 
+
+const getFilterData = (search) =>{ 
+//검색어가 없으면 mockData를 리턴한다. 
+    if(search===""){ 
+        return  mockData; 
+    } 
+
+//filter함수를 이용해서 search(검색어)를 포함하고 있는 todo들를 받는다 
+    let searchTodo = mockData.filter((todo)=> {
+        return todo.content.toLowerCase().includes(search.toLowerCase());
+    });
+    //filter의 결과를 리턴 한다. 
+    return searchTodo;
+}

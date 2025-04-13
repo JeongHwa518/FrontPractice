@@ -9,7 +9,6 @@
     <link rel="stylesheet" type="text/css" href="css/editor.css">
     <link rel="stylesheet" type="text/css" href="css/list.css">
     <link rel="stylesheet" type="text/css" href="css/todoItem.css">
-    <script src="js/todoList.js"></script>
 </head>
 <body>
     <div class="app">
@@ -25,19 +24,12 @@
         </form>
         <div class="list">
             <h4>Todo List✏️</h4>
-            <input type="text" placeholder="검색어를 입력해주세요.">
+            <input type="text" placeholder="검색어를 입력해주세요." id="keyword">
             <div class="todos-wrapper">
-                <div class="todo-item">
-                    <input type="checkbox" onchange="onUpdate(id)">
-                    <div class="content"></div>
-                    <div class="date"></div>
-                    <button onclick="">삭제</button>
-                </div>
-                <div class="todo-item">
-                    
-                </div>
+            
             </div>
         </div>
     </div>
+<script src="js/todoList.js"></script>
 </body>
 </html>
