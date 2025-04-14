@@ -28,10 +28,6 @@ const initData = (printData)=> {
                               <div class="content">${data.content}</div>
                               <div class="date">${new Date(data.date).toLocaleString()}</div>
                               <button name=${data.id} onclick="todoDel(this)" data-id="">삭제</button></div>`;
-        
-        //삭제 버튼에 name속성 추가
-        //document.querySelector(".todo-item > button").setAttribute("name", `${data.id}`);
-    
     });  
 };
 
